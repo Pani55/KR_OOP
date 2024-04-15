@@ -6,7 +6,6 @@ class JsonKeeper(HH):
 
     def __init__(self):
         super().__init__()
-        self.vacancies_json = None
 
     def create_and_fill_json_file(self):
         with open('data/data.json', 'w') as file:
