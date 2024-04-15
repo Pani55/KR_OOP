@@ -19,4 +19,4 @@ with open('data/data.json', 'r') as file:
                                         i['salary']['from'], i['salary']['to'], i['alternate_url']))
 
 for k in vacancies_list:
-    print(type(k))
+    print(repr(k))
