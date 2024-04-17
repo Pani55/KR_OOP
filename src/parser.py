@@ -15,10 +15,12 @@ class HH(Parser):
 
     def __init__(self):
         self.url = 'https://api.hh.ru/vacancies'
-        self.params = {'text': '', 'per_page': 10}
+        self.params = {'text': '', 'per_page': 100}
         self.vacancies = None
 
     def load_vacancies(self, keyword):
         self.params['text'] = keyword
         response = requests.get(self.url, params=self.params)
         self.vacancies = response.json()['items']
+
+        return self.vacancies

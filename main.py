@@ -1,22 +1,18 @@
-import json
-from src.json_keeper import JsonKeeper
-from src.vacancies import Vacancies
+from src.parser import HH
+from src.vacancies import Vacancy
+from src.utils import get_filtered_vacancies_by_city, get_sorted_vacancies
 
 
-vacancies_list = []
 user_keyword = input('Введите профессию: ')
+user_city = input('Введите город: ')
 
-exp1 = JsonKeeper()
-exp1.load_vacancies(user_keyword)
-exp1.create_and_fill_json_file()
+hh_api = HH()
 
+hh_vacancies = hh_api.load_vacancies(user_keyword)
 
-with open('data/data.json', 'r') as file:
-    info = json.load(file)
+vacancies_list = Vacancy.cost_to_object_list(hh_vacancies)
+vacancies_list = get_filtered_vacancies_by_city(vacancies_list, user_city)
+vacancies_list = get_sorted_vacancies(vacancies_list)
 
-    for i in info:
-        vacancies_list.append(Vacancies(i['name'], i['area']['name'], i['snippet']['requirement'],
-                                        i['salary']['from'], i['salary']['to'], i['alternate_url']))
-
-for k in vacancies_list:
-    print(repr(k))
+for i in vacancies_list:
+    print(i)
