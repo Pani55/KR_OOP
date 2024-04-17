@@ -23,8 +23,8 @@ class Vacancy:
                 salary_to = 0
                 currency = 0
             else:
-                salary_from = vacancy.get('salary').get('from')
-                salary_to = vacancy.get('salary').get('to')
+                salary_from = Vacancy.validate_data_int(vacancy.get('salary').get('from'))
+                salary_to = Vacancy.validate_data_int(vacancy.get('salary').get('to'))
                 currency = vacancy['salary']['currency']
             requirements = vacancy['snippet']['requirement']
             url = vacancy['alternate_url']
@@ -33,6 +33,17 @@ class Vacancy:
             vacancies_list.append(vacancy_object)
 
         return vacancies_list
+
+    @staticmethod
+    def validate_data_int(value):
+        if value:
+            return value
+        return 0
+
+    @staticmethod
+    def print_vacancies(vacancies_list):
+        for vacancy in vacancies_list:
+            print(vacancy)
 
     def __gt__(self, other):
         if not isinstance(other, (Vacancy, int)):
