@@ -1,8 +1,8 @@
 from src.parser import HH
 from src.vacancies import Vacancy
-from src.utils import get_filtered_vacancies_by_city, get_sorted_vacancies, get_top_n_by_salary
+from src.utils import get_filtered_vacancies_by_city, get_sorted_vacancies, get_top_n_by_salary, user_interaction
 
-
+"""
 user_keyword = input('Введите профессию: ')
 user_city = input('Введите город: ')
 user_top_n = int(input('Введите кол-во вакансий: '))
@@ -18,3 +18,6 @@ top_n = get_top_n_by_salary(sorted_list, user_top_n)
 
 
 Vacancy.print_vacancies(top_n)
+"""
+
+user_interaction()
