@@ -1,6 +1,11 @@
 class Vacancy:
+    """
+    Класс для работы с вакансиями: Создания экземпляров, валидации данных, полученных с API HeadHunter, и т.д.
 
-    def __init__(self, name, salary_from, salary_to, currency, requirements, url, city):
+    """
+
+    def __init__(self, name: str, salary_from: int, salary_to: int,
+                 currency: str, requirements: str, url: str, city: str):
         self.name = name
         self.salary_from = salary_from
         self.salary_to = salary_to
@@ -15,6 +20,12 @@ class Vacancy:
 
     @classmethod
     def cost_to_object_list(cls, hh_vacancies):
+        """
+        Классовый метод для создания экзэмпляров класса и укладки их в список.
+
+        :param hh_vacancies: response обЪект - ответ от API HeadHunter.
+        :return: Список экземпляров класса Vacancy.
+        """
         vacancies_list = []
         for vacancy in hh_vacancies:
             name = vacancy['name']
@@ -36,16 +47,29 @@ class Vacancy:
 
     @staticmethod
     def validate_data_int(value):
+        """
+        Валидатор интовых значений.
+
+        """
         if value:
             return value
         return 0
 
     @staticmethod
     def print_vacancies(vacancies_list):
+        """
+        Статический метод для печати вакансий из списка в читабельном виде.
+
+        :param vacancies_list: Список вакансий.
+        """
         for vacancy in vacancies_list:
             print(vacancy)
 
     def __gt__(self, other):
+        """
+        Магический метод. Используется для сортировки списка по минимальной зарплате.
+
+        """
         if not isinstance(other, (Vacancy, int)):
             raise TypeError('нит')
         if type(other) is type(self):
