@@ -1,7 +1,30 @@
 import json
+from abc import ABC, abstractmethod
 
 
-class JSONKeeper:
+class FileWorker(ABC):
+    @staticmethod
+    @abstractmethod
+    def make_fill_file(data):
+        pass
+
+    @staticmethod
+    @abstractmethod
+    def delete_vacancies():
+        pass
+
+    @staticmethod
+    @abstractmethod
+    def add_vacancy():
+        pass
+
+    @staticmethod
+    @abstractmethod
+    def delete_one_vacancy():
+        pass
+
+
+class JSONKeeper(FileWorker):
     @staticmethod
     def make_fill_file(data):
         """
@@ -25,3 +48,11 @@ class JSONKeeper:
         with open('data/data.json', 'w') as file:
             data = None
             json.dump(data, file)
+
+    @staticmethod
+    def add_vacancy():
+        pass
+
+    @staticmethod
+    def delete_one_vacancy():
+        pass
